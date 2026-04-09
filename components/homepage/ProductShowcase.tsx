@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { useCart } from "@/components/cart/CartContext";
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
@@ -111,24 +112,45 @@ export default function ProductShowcase() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [activeIndex, scrollToSlide]);
 
-  // Drag to scroll
+  // Drag to scroll — only activate after 5px movement to allow clicks
+  const didDrag = useRef(false);
+
   const handlePointerDown = (e: React.PointerEvent) => {
     const track = trackRef.current;
     if (!track) return;
-    setIsDragging(true);
+    didDrag.current = false;
     dragStartX.current = e.clientX;
     scrollStartX.current = track.scrollLeft;
-    track.setPointerCapture(e.pointerId);
+    setIsDragging(true);
   };
 
   const handlePointerMove = (e: React.PointerEvent) => {
     if (!isDragging || !trackRef.current) return;
     const dx = e.clientX - dragStartX.current;
-    trackRef.current.scrollLeft = scrollStartX.current - dx;
+    if (Math.abs(dx) > 5) {
+      didDrag.current = true;
+    }
+    if (didDrag.current) {
+      trackRef.current.scrollLeft = scrollStartX.current - dx;
+    }
   };
 
   const handlePointerUp = () => {
     setIsDragging(false);
+  };
+
+  const { addToCart } = useCart();
+  const [addedIndex, setAddedIndex] = useState<number | null>(null);
+
+  const handleAddToCart = (hat: typeof hats[number], index: number) => {
+    addToCart({
+      handle: hat.handle,
+      name: hat.name,
+      price: 45,
+      image: hat.image,
+    });
+    setAddedIndex(index);
+    setTimeout(() => setAddedIndex(null), 1500);
   };
 
   const padIndex = (i: number) => String(i + 1).padStart(2, "0");
@@ -143,7 +165,7 @@ export default function ProductShowcase() {
           </p>
           <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl tracking-wide text-foreground leading-[0.95]">
             The Hats.<br />
-            Designed by Papa Charlie.
+            Designed by Papa Charli.
           </h2>
         </div>
         <p className="hidden sm:block font-mono text-sm tracking-widest text-text-muted">
@@ -241,8 +263,13 @@ export default function ProductShowcase() {
                     </div>
 
                     {/* Price */}
-                    <p className="font-display text-2xl text-foreground mb-6">
+                    <p className="font-display text-2xl text-foreground mb-3">
                       $45
+                    </p>
+
+                    {/* Inventory badge */}
+                    <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-[#C8905A] mb-6">
+                      21 of 21 remaining &middot; Drop 001
                     </p>
 
                     {/* Buttons */}
@@ -253,76 +280,123 @@ export default function ProductShowcase() {
                       >
                         Quick View
                       </Link>
-                      <button className="flex-1 py-3.5 bg-foreground text-background font-mono text-[11px] uppercase tracking-widest hover:bg-foreground/85 transition-colors">
-                        Add to Cart
+                      <button
+                        onClick={() => handleAddToCart(hat, i)}
+                        className="flex-1 py-3.5 bg-foreground text-background font-mono text-[11px] uppercase tracking-widest hover:bg-foreground/85 transition-colors"
+                      >
+                        {addedIndex === i ? "Added \u2713" : "Add to Cart"}
                       </button>
                     </div>
                   </div>
                 </div>
 
                 {/* RIGHT — Dark editorial panel */}
-                <div className="relative flex flex-col justify-between bg-[#0A0A0A] p-8 sm:p-12 overflow-hidden min-h-[400px] lg:min-h-0">
-                  {/* Ghost text */}
-                  <div className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden select-none">
-                    <span
-                      className="font-display text-[180px] sm:text-[240px] lg:text-[280px] text-white/[0.02] whitespace-nowrap leading-none"
-                    >
-                      {hat.name}
-                    </span>
-                  </div>
+                <div className="relative flex flex-col justify-between bg-[#0A0A0A] overflow-hidden min-h-[400px] lg:min-h-0">
+                  {i === 0 ? (
+                    <>
+                      {/* Lifestyle image — edge to edge */}
+                      <img
+                        src="/images/lifestyle/hero-model-hat-standard.jpg"
+                        alt="The Standard — worn"
+                        className="absolute inset-0 w-full h-full object-cover object-center-top"
+                        style={{ objectPosition: "center top" }}
+                      />
+                      {/* Dark gradient overlay for text legibility */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
-                  {/* Scrolling marquee top */}
-                  <div className="overflow-hidden border-b border-white/5 pb-4 mb-auto">
-                    <div className="flex animate-marquee whitespace-nowrap">
-                      {Array.from({ length: 4 }).map((_, j) => (
+                      {/* Bottom: quote + badge — overlaid */}
+                      <div className="relative z-10 mt-auto p-8 sm:p-12 flex items-end justify-between gap-6">
+                        <p className="font-editorial italic text-sm sm:text-base text-white/70 max-w-[280px] leading-relaxed">
+                          &ldquo;{hat.quote}&rdquo;
+                        </p>
+
+                        {/* Papa Charli badge */}
+                        <div className="flex-none w-16 h-16 sm:w-20 sm:h-20 rounded-full border border-[#C8905A]/30 flex items-center justify-center animate-[spin_20s_linear_infinite]">
+                          <svg viewBox="0 0 100 100" className="w-full h-full">
+                            <defs>
+                              <path
+                                id={`badge-circle-${i}`}
+                                d="M 50,50 m -35,0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0"
+                              />
+                            </defs>
+                            <text className="fill-[#C8905A]/50" style={{ fontSize: "9px" }}>
+                              <textPath
+                                href={`#badge-circle-${i}`}
+                                startOffset="0%"
+                                style={{ fontFamily: "var(--font-space-mono)", letterSpacing: "0.15em" }}
+                              >
+                                PAPA CHARLIE &middot; DESIGNED BY &middot; DROP 001 &middot;
+                              </textPath>
+                            </text>
+                          </svg>
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    <div className="flex flex-col justify-between h-full p-8 sm:p-12">
+                      {/* Ghost text */}
+                      <div className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden select-none">
                         <span
-                          key={j}
-                          className="font-mono text-[9px] uppercase tracking-[0.3em] text-white/15"
+                          className="font-display text-[180px] sm:text-[240px] lg:text-[280px] text-white/[0.02] whitespace-nowrap leading-none"
                         >
-                          {marqueeText}
+                          {hat.name}
                         </span>
-                      ))}
-                    </div>
-                  </div>
+                      </div>
 
-                  {/* Lifestyle placeholder */}
-                  <div className="relative z-10 flex-1 flex items-center justify-center my-8">
-                    <div className="relative w-full max-w-[280px] aspect-[4/3] border border-white/5 bg-white/[0.02] flex items-center justify-center">
-                      <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-white/20">
-                        Lifestyle
-                      </span>
-                      {/* Hotspot dot */}
-                      <span className="absolute top-1/3 left-2/3 w-3 h-3 rounded-full bg-[#C8905A]/60 ring-4 ring-[#C8905A]/20 animate-pulse" />
-                    </div>
-                  </div>
+                      {/* Scrolling marquee top */}
+                      <div className="overflow-hidden border-b border-white/5 pb-4 mb-auto">
+                        <div className="flex animate-marquee whitespace-nowrap">
+                          {Array.from({ length: 4 }).map((_, j) => (
+                            <span
+                              key={j}
+                              className="font-mono text-[9px] uppercase tracking-[0.3em] text-white/15"
+                            >
+                              {marqueeText}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
 
-                  {/* Bottom: quote + badge */}
-                  <div className="relative z-10 flex items-end justify-between gap-6">
-                    <p className="font-editorial italic text-sm sm:text-base text-white/50 max-w-[280px] leading-relaxed">
-                      &ldquo;{hat.quote}&rdquo;
-                    </p>
+                      {/* Lifestyle placeholder */}
+                      <div className="relative z-10 flex-1 flex items-center justify-center my-8">
+                        <div className="relative w-full max-w-[280px] aspect-[4/3] border border-white/5 bg-white/[0.02] flex items-center justify-center">
+                          <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-white/20">
+                            Lifestyle
+                          </span>
+                          {/* Hotspot dot */}
+                          <span className="absolute top-1/3 left-2/3 w-3 h-3 rounded-full bg-[#C8905A]/60 ring-4 ring-[#C8905A]/20 animate-pulse" />
+                        </div>
+                      </div>
 
-                    {/* Papa Charlie badge */}
-                    <div className="flex-none w-16 h-16 sm:w-20 sm:h-20 rounded-full border border-[#C8905A]/30 flex items-center justify-center animate-[spin_20s_linear_infinite]">
-                      <svg viewBox="0 0 100 100" className="w-full h-full">
-                        <defs>
-                          <path
-                            id={`badge-circle-${i}`}
-                            d="M 50,50 m -35,0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0"
-                          />
-                        </defs>
-                        <text className="fill-[#C8905A]/50" style={{ fontSize: "9px" }}>
-                          <textPath
-                            href={`#badge-circle-${i}`}
-                            startOffset="0%"
-                            style={{ fontFamily: "var(--font-space-mono)", letterSpacing: "0.15em" }}
-                          >
-                            PAPA CHARLIE &middot; DESIGNED BY &middot; DROP 001 &middot;
-                          </textPath>
-                        </text>
-                      </svg>
+                      {/* Bottom: quote + badge */}
+                      <div className="relative z-10 flex items-end justify-between gap-6">
+                        <p className="font-editorial italic text-sm sm:text-base text-white/50 max-w-[280px] leading-relaxed">
+                          &ldquo;{hat.quote}&rdquo;
+                        </p>
+
+                        {/* Papa Charli badge */}
+                        <div className="flex-none w-16 h-16 sm:w-20 sm:h-20 rounded-full border border-[#C8905A]/30 flex items-center justify-center animate-[spin_20s_linear_infinite]">
+                          <svg viewBox="0 0 100 100" className="w-full h-full">
+                            <defs>
+                              <path
+                                id={`badge-circle-${i}`}
+                                d="M 50,50 m -35,0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0"
+                              />
+                            </defs>
+                            <text className="fill-[#C8905A]/50" style={{ fontSize: "9px" }}>
+                              <textPath
+                                href={`#badge-circle-${i}`}
+                                startOffset="0%"
+                                style={{ fontFamily: "var(--font-space-mono)", letterSpacing: "0.15em" }}
+                              >
+                                PAPA CHARLIE &middot; DESIGNED BY &middot; DROP 001 &middot;
+                              </textPath>
+                            </text>
+                          </svg>
+                        </div>
+                      </div>
                     </div>
-                  </div>
+                  )}
                 </div>
               </div>
             </div>

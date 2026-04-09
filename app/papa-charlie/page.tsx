@@ -1,130 +1,74 @@
-import Nav from "@/components/nav/Nav";
-import Footer from "@/components/footer/Footer";
+'use client'
+import { useEffect, useRef } from 'react'
+import Nav from '@/components/nav/Nav'
+import Footer from '@/components/footer/Footer'
 
-export const metadata = {
-  title: "Papa Charlie — JAFDFT",
-  description: "She didn't just give me a name — she gave me a purpose.",
-};
+export default function PapaCharli() {
+  const contentRef = useRef<HTMLDivElement>(null)
 
-export default function PapaCharliePage() {
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-in')
+          }
+        })
+      },
+      { threshold: 0.1 }
+    )
+    const elements = contentRef.current?.querySelectorAll('.fade-up')
+    elements?.forEach((el) => observer.observe(el))
+    return () => observer.disconnect()
+  }, [])
+
   return (
     <>
       <Nav />
-      <main className="bg-[#FAF7F2] flex-1">
-        {/* Text content */}
-        <div className="mx-auto max-w-[720px] px-6 py-24 sm:py-32">
-          {/* Eyebrow */}
-          <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-text-muted mb-6">
-            Papa Charlie
-          </p>
+      <style>{`
+        .hero-img { animation: kenburns 20s ease-in-out infinite alternate; }
+        @keyframes kenburns { from { transform: scale(1); } to { transform: scale(1.08); } }
+        .fade-up { opacity: 0; transform: translateY(32px); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .fade-up.animate-in { opacity: 1; transform: translateY(0); }
+        .fade-up:nth-child(1) { transition-delay: 0s; }
+        .fade-up:nth-child(2) { transition-delay: 0.1s; }
+        .fade-up:nth-child(3) { transition-delay: 0.2s; }
+        .fade-up:nth-child(4) { transition-delay: 0.3s; }
+        .fade-up:nth-child(5) { transition-delay: 0.4s; }
+        .divider-line { width: 0; transition: width 0.8s ease 0.3s; }
+        .animate-in .divider-line, .divider-line.animate-in { width: 48px; }
+      `}</style>
 
-          {/* Headline */}
-          <h1 className="font-display text-7xl sm:text-[72px] tracking-wide text-foreground leading-none mb-10">
-            The Name Behind The Hat.
-          </h1>
+      {/* FULL HERO */}
+      <div style={{ position: 'relative', width: '100%', height: '100vh', overflow: 'hidden' }}>
+        <img
+          src="/images/lifestyle/papa-charlie-family.jpg"
+          alt="Papa Charli and family"
+          className="hero-img"
+          style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 30%' }}
+        />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 70%, #FAF7F2 100%)' }} />
+      </div>
 
-          {/* Pull quote */}
-          <blockquote className="font-editorial italic text-[24px] sm:text-[28px] text-[#C8905A] leading-snug mb-10 max-w-lg">
-            &ldquo;She didn&rsquo;t just give me a name &mdash; she gave me a purpose.&rdquo;
-          </blockquote>
-
-          {/* Cognac divider */}
-          <span className="block w-12 h-px bg-[#C8905A] mb-10" />
-
-          {/* Body */}
-          <div className="font-body text-base text-text-muted leading-[1.8] space-y-6">
-            <p>
-              Charlie arrived. I became Papa Charlie. She didn&rsquo;t just give me a
-              name &mdash; she gave me a purpose.
-            </p>
-            <p>
-              Every hat in this drop is my design. Built for the fathers who are locked
-              in and show up. This is what that looks like.
-            </p>
+      {/* CONTENT SECTION */}
+      <div ref={contentRef} style={{ background: '#FAF7F2', paddingTop: '80px', paddingBottom: '120px' }}>
+        <div style={{ maxWidth: '680px', margin: '0 auto', padding: '0 24px' }}>
+          <p className="fade-up" style={{ fontFamily: 'Space Mono, monospace', fontSize: '9px', letterSpacing: '3px', textTransform: 'uppercase', color: '#C8905A', marginBottom: '12px' }}>Papa Charli</p>
+          <h1 className="fade-up" style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: 'clamp(48px, 8vw, 80px)', letterSpacing: '2px', color: '#0A0A0A', marginBottom: '24px', lineHeight: 1 }}>THE NAME BEHIND THE HAT.</h1>
+          <p className="fade-up" style={{ fontFamily: 'Playfair Display, serif', fontStyle: 'italic', fontSize: '24px', color: '#C8905A', marginBottom: '24px', lineHeight: 1.4 }}>&ldquo;She didn&rsquo;t just give me a name &mdash; she gave me a purpose.&rdquo;</p>
+          <div className="fade-up">
+            <div className="divider-line animate-in" style={{ height: '1px', background: '#C8905A', marginBottom: '32px' }} />
+          </div>
+          <div className="fade-up" style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '16px', fontWeight: 300, color: '#7a7570', lineHeight: 1.8 }}>
+            <p style={{ marginBottom: '20px' }}>Charli arrived. I became Papa Charli. She didn&rsquo;t just give me a name &mdash; she gave me a purpose.</p>
+            <p>Every hat in this drop is my design. Built for the fathers who are locked in and show up. This is what that looks like.</p>
+          </div>
+          <div className="fade-up" style={{ marginTop: '48px' }}>
+            <a href="/collections/all" style={{ display: 'inline-block', background: '#C8905A', color: '#0A0A0A', fontFamily: 'Space Mono, monospace', fontSize: '9px', letterSpacing: '3px', textTransform: 'uppercase', padding: '16px 32px', textDecoration: 'none', fontWeight: 700 }}>Shop Collection</a>
           </div>
         </div>
-
-        {/* Papa Charlie badge panel */}
-        <div className="bg-[#0A0A0A] py-20 sm:py-28">
-          <div className="mx-auto max-w-[720px] px-6 flex items-center justify-center">
-            <svg
-              viewBox="0 0 240 240"
-              className="w-[200px] h-[200px] sm:w-[260px] sm:h-[260px]"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              {/* Outer circle */}
-              <circle
-                cx="120"
-                cy="120"
-                r="110"
-                fill="none"
-                stroke="#C8905A"
-                strokeWidth="1"
-              />
-              {/* Inner circle */}
-              <circle
-                cx="120"
-                cy="120"
-                r="96"
-                fill="none"
-                stroke="#C8905A"
-                strokeWidth="0.5"
-              />
-
-              {/* Circular text */}
-              <defs>
-                <path
-                  id="pc-circle"
-                  d="M 120,120 m -85,0 a 85,85 0 1,1 170,0 a 85,85 0 1,1 -170,0"
-                />
-              </defs>
-              <text
-                fill="#C8905A"
-                style={{
-                  fontSize: "10px",
-                  letterSpacing: "0.2em",
-                  fontFamily: "var(--font-space-mono)",
-                }}
-              >
-                <textPath href="#pc-circle" startOffset="0%">
-                  PAPA CHARLIE &middot; DESIGNED BY PAPA CHARLIE &middot; EST MMXVIII &middot;
-                </textPath>
-              </text>
-
-              {/* Center PC text */}
-              <text
-                x="120"
-                y="115"
-                textAnchor="middle"
-                fill="#C8905A"
-                style={{
-                  fontFamily: "var(--font-bebas-neue)",
-                  fontSize: "52px",
-                  letterSpacing: "0.12em",
-                }}
-              >
-                PC
-              </text>
-              {/* Sub text */}
-              <text
-                x="120"
-                y="140"
-                textAnchor="middle"
-                fill="#C8905A"
-                opacity="0.5"
-                style={{
-                  fontFamily: "var(--font-space-mono)",
-                  fontSize: "7px",
-                  letterSpacing: "0.3em",
-                }}
-              >
-                EST MMXVIII
-              </text>
-            </svg>
-          </div>
-        </div>
-      </main>
+      </div>
       <Footer />
     </>
-  );
+  )
 }

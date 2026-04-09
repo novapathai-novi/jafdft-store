@@ -8,33 +8,49 @@ const marqueeText =
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center bg-[#0A0A0A] overflow-hidden">
-      {/* Diagonal grid texture */}
+      {/* Layer 1: Hero background image with Ken Burns slow zoom */}
       <div
-        className="pointer-events-none absolute inset-0"
+        className="absolute inset-0 z-0 hero-image"
         style={{
-          backgroundImage: `
-            repeating-linear-gradient(
-              45deg,
-              transparent,
-              transparent 40px,
-              rgba(255,255,255,0.03) 40px,
-              rgba(255,255,255,0.03) 41px
-            ),
-            repeating-linear-gradient(
-              -45deg,
-              transparent,
-              transparent 40px,
-              rgba(255,255,255,0.03) 40px,
-              rgba(255,255,255,0.03) 41px
-            )
-          `,
+          backgroundImage: "url('/images/lifestyle/hero-model.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "right center",
+          animation: "slowZoom 20s ease-in-out infinite",
+        }}
+      />
+
+      {/* Layer 2: Warm cognac edge glow */}
+      <div
+        className="pointer-events-none absolute inset-0 z-[1]"
+        style={{
+          background:
+            "radial-gradient(ellipse at 0% 50%, rgba(200,144,90,0.12) 0%, transparent 60%)",
+        }}
+      />
+
+      {/* Layer 3: Dark vignette for depth */}
+      <div
+        className="pointer-events-none absolute inset-0 z-[2]"
+        style={{
+          background:
+            "radial-gradient(ellipse at center, transparent 40%, rgba(10,10,10,0.3) 100%)",
+        }}
+      />
+
+      {/* Layer 4: Film grain texture */}
+      <div
+        className="pointer-events-none absolute inset-0 z-[3]"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
+          opacity: 0.03,
+          mixBlendMode: "overlay",
         }}
       />
 
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center text-center px-6">
         {/* Top label */}
-        <p className="font-mono text-[10px] sm:text-xs uppercase tracking-[0.3em] text-white/40 mb-8 sm:mb-12">
+        <p className="font-mono text-[10px] sm:text-xs uppercase tracking-[0.3em] text-[#C8905A] mb-8 sm:mb-12">
           Limited Edition &middot; Drop 001 &middot; 125 Hats &middot; Each One Numbered
         </p>
 
@@ -43,8 +59,8 @@ export default function Hero() {
           className="font-display leading-[0.9] text-[#F2EDE4]"
           style={{ fontSize: "clamp(72px, 15vw, 140px)" }}
         >
-          <span className="block">The Standard</span>
-          <span className="block">Is Here.</span>
+          <span className="block">For Fathers</span>
+          <span className="block">Who Are Locked In.</span>
         </h1>
 
         {/* Subline */}

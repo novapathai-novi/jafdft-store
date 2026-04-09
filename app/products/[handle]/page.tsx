@@ -143,8 +143,8 @@ export default function ProductPage() {
                       src={img.src}
                       alt={`${product.name} — ${img.angle}`}
                       draggable={false}
-                      className="select-none"
-                      style={{ backgroundColor: "#F2EDE4", width: "75%", height: "75%", objectFit: "contain", maxHeight: "375px" }}
+                      className="w-4/5 h-4/5 object-contain select-none"
+                      style={{ backgroundColor: '#F2EDE4', maxHeight: '400px' }}
                     />
                   </div>
                 </div>
@@ -172,13 +172,13 @@ export default function ProductPage() {
                   ${product.price}
                 </p>
 
-                {/* Papa Charlie badge */}
+                {/* Papa Charli badge */}
                 <div className="flex items-center gap-3 mb-6 pb-6 border-b border-border">
                   <div className="w-9 h-9 rounded-full border border-[#C8905A]/40 flex items-center justify-center flex-none">
                     <span className="font-display text-[11px] text-[#C8905A]">PC</span>
                   </div>
                   <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-text-muted">
-                    Designed by Papa Charlie
+                    Designed by Papa Charli
                   </span>
                 </div>
 
@@ -211,7 +211,12 @@ export default function ProductPage() {
                 </p>
 
                 {/* Add to Cart */}
-                <AddToCartButton variantId={product.variantId} />
+                <AddToCartButton
+                  handle={product.handle}
+                  name={product.name}
+                  price={product.price}
+                  image={product.images[0].src}
+                />
 
                 {/* Buy it Now */}
                 <button className="w-full py-4 mt-3 border border-foreground text-foreground font-mono text-[11px] uppercase tracking-widest hover:bg-foreground hover:text-background transition-colors">
@@ -252,7 +257,7 @@ export default function ProductPage() {
                 <Accordion title="Embroidery Details">
                   <ul className="list-disc list-inside space-y-1.5">
                     <li>Front panel &mdash; JAFDFT wordmark, precision embroidery</li>
-                    <li>Side panel &mdash; Papa Charlie mark</li>
+                    <li>Side panel &mdash; Papa Charli mark</li>
                     <li>Rear &mdash; EST MMXVIII detail</li>
                     <li>Underbrim &mdash; &ldquo;Flip the brim. EST MMXVIII. That&rsquo;s when it started.&rdquo;</li>
                   </ul>

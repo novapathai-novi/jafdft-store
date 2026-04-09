@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Nav from "@/components/nav/Nav";
 import Footer from "@/components/footer/Footer";
+import AddToCartButton from "@/components/cart/AddToCartButton";
 
 const products = [
   {
@@ -101,40 +102,43 @@ export default function CollectionPage() {
         <div className="mx-auto max-w-7xl px-6 pb-24 sm:pb-32">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {filtered.map((product) => (
-              <Link
-                key={product.handle}
-                href={`/products/${product.handle}`}
-                className="group block"
-              >
-                {/* Image */}
-                <div
-                  className="aspect-square mb-4 overflow-hidden flex items-center justify-center"
-                  style={{ backgroundColor: "#F2EDE4" }}
-                >
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    draggable={false}
-                    className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
+              <div key={product.handle} className="group">
+                <Link href={`/products/${product.handle}`} className="block">
+                  {/* Image */}
+                  <div
+                    className="aspect-square mb-4 overflow-hidden flex items-center justify-center"
+                    style={{ backgroundColor: "#F2EDE4" }}
+                  >
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      draggable={false}
+                      className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+                      style={{ backgroundColor: '#F2EDE4' }}
+                    />
+                  </div>
 
-                {/* Info */}
-                <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-[#C8905A] mb-1">
-                  {product.series}
-                </p>
-                <h3 className="font-display text-[28px] tracking-wide text-foreground leading-tight mb-1">
-                  {product.name}
-                </h3>
-                <p className="font-mono text-sm text-text-muted mb-4">
-                  ${product.price}
-                </p>
+                  {/* Info */}
+                  <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-[#C8905A] mb-1">
+                    {product.series}
+                  </p>
+                  <h3 className="font-display text-[28px] tracking-wide text-foreground leading-tight mb-1">
+                    {product.name}
+                  </h3>
+                  <p className="font-mono text-sm text-text-muted mb-4">
+                    ${product.price}
+                  </p>
+                </Link>
 
                 {/* Add to Cart */}
-                <button className="w-full py-3.5 bg-foreground text-background font-mono text-[11px] uppercase tracking-widest hover:bg-foreground/85 transition-colors">
-                  Add to Cart
-                </button>
-              </Link>
+                <AddToCartButton
+                  handle={product.handle}
+                  name={product.name}
+                  price={product.price}
+                  image={product.image}
+                  className="py-3.5"
+                />
+              </div>
             ))}
           </div>
         </div>

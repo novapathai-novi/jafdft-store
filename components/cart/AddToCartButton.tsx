@@ -1,47 +1,40 @@
 "use client";
 
 import { useState } from "react";
-import { createCart, addToCart } from "@/lib/shopify";
+import { useCart } from "@/components/cart/CartContext";
 
 type Props = {
-  variantId: string;
+  handle: string;
+  name: string;
+  price: number;
+  image: string;
   label?: string;
   className?: string;
 };
 
 export default function AddToCartButton({
-  variantId,
+  handle,
+  name,
+  price,
+  image,
   label = "Add to Cart",
   className = "",
 }: Props) {
-  const [status, setStatus] = useState<"idle" | "loading" | "error">("idle");
+  const { addToCart } = useCart();
+  const [added, setAdded] = useState(false);
 
-  const handleClick = async () => {
-    setStatus("loading");
-    try {
-      const cart = await createCart();
-      const updated = await addToCart(cart.id, variantId, 1);
-      window.location.href = updated.checkoutUrl;
-    } catch {
-      setStatus("error");
-      setTimeout(() => setStatus("idle"), 3000);
-    }
+  const handleClick = () => {
+    addToCart({ handle, name, price, image });
+    setAdded(true);
+    setTimeout(() => setAdded(false), 1500);
   };
-
-  const text =
-    status === "loading"
-      ? "Adding..."
-      : status === "error"
-        ? "Try Again"
-        : label;
 
   return (
     <button
       onClick={handleClick}
-      disabled={status === "loading"}
-      className={`w-full py-4 bg-foreground text-background font-mono text-[11px] uppercase tracking-widest hover:bg-foreground/85 transition-colors disabled:opacity-60 ${className}`}
+      className={`w-full py-4 bg-foreground text-background font-mono text-[11px] uppercase tracking-widest hover:bg-foreground/85 transition-colors ${className}`}
     >
-      {text}
+      {added ? "Added \u2713" : label}
     </button>
   );
 }

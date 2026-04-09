@@ -2,15 +2,17 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { useCart } from "@/components/cart/CartContext";
 
 const navLinks = [
   { label: "Shop", href: "/collections/all" },
   { label: "Our Story", href: "/our-story" },
-  { label: "Papa Charlie", href: "/papa-charlie" },
+  { label: "Papa Charli", href: "/papa-charlie" },
 ];
 
 export default function Nav() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { cartCount } = useCart();
 
   return (
     <header className="sticky top-0 z-50 w-full backdrop-blur-md bg-[#FAF7F2]/90 border-b border-border">
@@ -36,8 +38,9 @@ export default function Nav() {
 
         {/* Right side: Cart + Mobile toggle */}
         <div className="flex items-center gap-4">
-          {/* Cart button */}
-          <button
+          {/* Cart link */}
+          <Link
+            href="/cart"
             aria-label="Open cart"
             className="relative font-mono text-xs uppercase tracking-widest text-text-muted hover:text-foreground transition-colors"
           >
@@ -55,7 +58,12 @@ export default function Nav() {
               <line x1="3" y1="6" x2="21" y2="6" />
               <path d="M16 10a4 4 0 01-8 0" />
             </svg>
-          </button>
+            {cartCount > 0 && (
+              <span className="absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-[#C8905A] text-[#0A0A0A] text-[9px] font-bold flex items-center justify-center">
+                {cartCount}
+              </span>
+            )}
+          </Link>
 
           {/* Mobile menu toggle */}
           <button

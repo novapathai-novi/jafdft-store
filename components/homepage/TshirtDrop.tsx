@@ -25,7 +25,7 @@ const stats = [
   { label: "Drop Date", value: "Summer 2026" },
   { label: "Collection", value: "JAFDFT Apparel" },
   { label: "Access", value: "Waitlist Only" },
-  { label: "Designed by", value: "Papa Charlie" },
+  { label: "Designed by", value: "Papa Charli" },
 ];
 
 // ─── Component ───────────────────────────────────────────────────────────────
@@ -143,7 +143,7 @@ export default function TshirtDrop() {
                 </button>
               </form>
               <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-white/20 mb-12">
-                Papa Charlie approved &middot; No spam &middot; Drop access only
+                Papa Charli approved &middot; No spam &middot; Drop access only
               </p>
 
               {/* Stats row */}

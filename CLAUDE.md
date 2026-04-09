@@ -64,7 +64,7 @@ All: One Size, Snapback, individually numbered 1-125
 
 ## PDP Layout
 Left: 4 stacked image panels (Front/Back/Left/Right) Kith-style
-Right: Sticky panel — series tag, name, price, Papa Charlie badge, swatches, Add to Cart (always visible black button), accordions, guarantees
+Right: Sticky panel — series tag, name, price, Papa Charli badge, swatches, Add to Cart (always visible black button), accordions, guarantees
 
 ## Icons
 All custom thin SVG — 1.5px stroke, round linecaps, cognac color.
@@ -77,10 +77,10 @@ Scarcity: "21 available. When they're gone, they're gone."
 Brim line: "Flip the brim. EST MMXVIII. That's when it started."
 
 ## Our Story
-"2018. Charlie was born. A friend asked Demetrie what he'd been up to lately. He said: 'I'm just a father, man. Doing fatherly things.' Those words weren't planned. They weren't a pitch. They were just true. EST MMXVIII. That's when it started. That's what's on the brim."
+"2018. Charli was born. A friend asked Demetrie what he'd been up to lately. He said: 'I'm just a father, man. Doing fatherly things.' Those words weren't planned. They weren't a pitch. They were just true. EST MMXVIII. That's when it started. That's what's on the brim."
 
-## Papa Charlie
-"Charlie arrived. I became Papa Charlie. She didn't just give me a name — she gave me a purpose. Every hat in this drop is my design. Built for the fathers who are locked in and show up. This is what that looks like."
+## Papa Charli
+"Charli arrived. I became Papa Charli. She didn't just give me a name — she gave me a purpose. Every hat in this drop is my design. Built for the fathers who are locked in and show up. This is what that looks like."
 
 ## Build Order
 1. .env.local with Shopify credentials
@@ -89,7 +89,7 @@ Brim line: "Flip the brim. EST MMXVIII. That's when it started."
 4. Homepage — section by section
 5. Collection page
 6. Product detail page (dynamic)
-7. Our Story + Papa Charlie pages
+7. Our Story + Papa Charli pages
 8. Cart integration — CartProvider, Add to Cart, checkout redirect
 9. Copy images to public/images/
 10. Deploy to Vercel
