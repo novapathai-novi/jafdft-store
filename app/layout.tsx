@@ -64,6 +64,22 @@ export default function RootLayout({
       lang="en"
       className={`${bebasNeue.variable} ${playfairDisplay.variable} ${dmSans.variable} ${spaceMono.variable} h-full antialiased`}
     >
+      <head>
+        <link
+          rel="preload"
+          as="image"
+          href="/images/hero/home/desktop.jpg"
+          media="(min-width: 768px)"
+          fetchPriority="high"
+        />
+        <link
+          rel="preload"
+          as="image"
+          href="/images/hero/home/mobile.jpg"
+          media="(max-width: 767px)"
+          fetchPriority="high"
+        />
+      </head>
       <body className="min-h-full flex flex-col bg-[#FAF7F2] text-[#0A0A0A] font-[family-name:var(--font-dm-sans)]">
         <CartProvider>
           {children}

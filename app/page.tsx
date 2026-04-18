@@ -28,7 +28,7 @@ function useCountUp(target: number, duration: number, shouldStart: boolean) {
   return value;
 }
 
-const typewriterWords = ["BY FATHERS", "FOR FATHERS."];
+const typewriterWords = ["BY A FATHER", "FOR FATHERS."];
 
 function TypewriterHeadline() {
   const [displayText, setDisplayText] = useState("");
@@ -118,7 +118,7 @@ function TypewriterHeadline() {
         className="font-display tracking-wide text-[#F2EDE4] mb-6 md:mb-8 hero-typewriter"
         style={{ lineHeight: 0.92 }}
       >
-        <span className="block">BY FATHERS</span>
+        <span className="block">BY A FATHER</span>
         <span className="block">FOR FATHERS.</span>
       </h1>
     );
@@ -162,7 +162,7 @@ export default function Home() {
   const [statsVisible, setStatsVisible] = useState(false);
 
   const count125 = useCountUp(125, 2000, statsVisible);
-  const count6 = useCountUp(6, 1000, statsVisible);
+  const count5 = useCountUp(5, 1000, statsVisible);
 
   // Stats intersection observer
   useEffect(() => {
@@ -203,22 +203,127 @@ export default function Home() {
         .hero-delay-3 { animation-delay: 0.5s; }
         .hero-delay-4 { animation-delay: 0.7s; }
         .hero-delay-5 { animation-delay: 0.9s; }
-        .hero-btn-fill {
-          transition: all 500ms ease-out;
+        /* Liquid Glass CTA system */
+        .glass-btn {
+          position: relative;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          padding: 16px 32px;
+          min-height: 52px;
+          border-radius: 999px;
+          text-decoration: none;
+          letter-spacing: 0.15em;
+          backdrop-filter: blur(20px) saturate(180%);
+          -webkit-backdrop-filter: blur(20px) saturate(180%);
+          border: 1px solid rgba(255, 255, 255, 0.18);
+          overflow: hidden;
+          isolation: isolate;
+          transition: transform 400ms cubic-bezier(0.22, 1, 0.36, 1),
+                      box-shadow 400ms cubic-bezier(0.22, 1, 0.36, 1),
+                      border-color 400ms ease,
+                      background 400ms ease;
+          cursor: pointer;
         }
-        .hero-btn-fill:hover {
-          background: #C8905A !important;
-          color: #0A0A0A !important;
-          transform: translateY(-2px);
-          box-shadow: 0 8px 24px rgba(200,144,90,0.3);
+        .glass-btn::before {
+          content: "";
+          position: absolute;
+          inset: 0;
+          pointer-events: none;
+          background: linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.28) 0%,
+            rgba(255, 255, 255, 0.06) 35%,
+            transparent 70%
+          );
+          z-index: 1;
         }
-        .hero-btn-outline {
-          transition: all 500ms ease-out;
+        .glass-btn::after {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: -120%;
+          width: 60%;
+          height: 100%;
+          background: linear-gradient(
+            110deg,
+            transparent 20%,
+            rgba(255, 255, 255, 0.4) 50%,
+            transparent 80%
+          );
+          transition: left 900ms cubic-bezier(0.22, 1, 0.36, 1);
+          pointer-events: none;
+          z-index: 2;
         }
-        .hero-btn-outline:hover {
-          background: #F2EDE4 !important;
-          color: #0A0A0A !important;
-          transform: translateY(-2px);
+        .glass-btn > * {
+          position: relative;
+          z-index: 3;
+        }
+        .glass-btn:hover {
+          transform: translateY(-2px) scale(1.015);
+          border-color: rgba(255, 255, 255, 0.32);
+        }
+        .glass-btn:hover::after {
+          left: 140%;
+        }
+        .glass-btn:active {
+          transform: translateY(0) scale(0.98);
+          transition-duration: 100ms;
+        }
+        .glass-btn:focus-visible {
+          outline: 2px solid rgba(200, 144, 90, 0.85);
+          outline-offset: 3px;
+        }
+        .glass-btn-primary {
+          background: linear-gradient(
+            135deg,
+            rgba(200, 144, 90, 0.82) 0%,
+            rgba(200, 144, 90, 0.62) 100%
+          );
+          color: #0A0A0A;
+          box-shadow:
+            inset 0 1px 0 rgba(255, 255, 255, 0.35),
+            inset 0 -1px 0 rgba(0, 0, 0, 0.1),
+            0 8px 24px rgba(200, 144, 90, 0.28),
+            0 2px 8px rgba(0, 0, 0, 0.18);
+        }
+        .glass-btn-primary:hover {
+          box-shadow:
+            inset 0 1px 0 rgba(255, 255, 255, 0.45),
+            inset 0 -1px 0 rgba(0, 0, 0, 0.12),
+            0 14px 36px rgba(200, 144, 90, 0.42),
+            0 4px 12px rgba(0, 0, 0, 0.22);
+        }
+        .glass-btn-secondary {
+          background: linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.14) 0%,
+            rgba(255, 255, 255, 0.06) 100%
+          );
+          color: #F2EDE4;
+          box-shadow:
+            inset 0 1px 0 rgba(255, 255, 255, 0.22),
+            0 8px 24px rgba(0, 0, 0, 0.25);
+          text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+        }
+        .glass-btn-secondary:hover {
+          background: linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.2) 0%,
+            rgba(255, 255, 255, 0.09) 100%
+          );
+          box-shadow:
+            inset 0 1px 0 rgba(255, 255, 255, 0.3),
+            0 14px 36px rgba(0, 0, 0, 0.3);
+        }
+        .glass-btn-icon {
+          transition: transform 400ms cubic-bezier(0.22, 1, 0.36, 1);
+          opacity: 0.85;
+        }
+        .glass-btn:hover .glass-btn-icon {
+          transform: translateX(5px);
+          opacity: 1;
         }
         @keyframes slowZoom {
           0% { transform: scale(1); }
@@ -244,6 +349,9 @@ export default function Home() {
             width: 120px;
           }
         }
+        .hero-zoom {
+          object-position: center 35%;
+        }
         .hero-typewriter {
           font-size: clamp(36px, 9vw, 48px);
         }
@@ -260,7 +368,7 @@ export default function Home() {
             background: linear-gradient(to right, rgba(10,10,10,0.7) 0%, rgba(10,10,10,0.45) 35%, rgba(10,10,10,0.1) 55%, transparent 70%);
           }
           .hero-zoom {
-            background-position: right center !important;
+            object-position: left center !important;
           }
         }
         @media (prefers-reduced-motion: reduce) {
@@ -272,7 +380,7 @@ export default function Home() {
 
       {/* HERO */}
       <section
-        className="relative w-full min-h-screen overflow-hidden"
+        className="relative w-full min-h-[100dvh] md:min-h-screen overflow-hidden"
         style={{ backgroundColor: "#F2EDE4" }}
       >
         {/* Diagonal shooting meteor lines — 2 on mobile, 4 on desktop */}
@@ -283,16 +391,24 @@ export default function Home() {
           <div className="meteor-line hidden md:block" style={{ top: "75%", left: "-120px", animation: "meteor 5.5s linear 4s infinite" }} />
         </div>
 
-        {/* Background image with Ken Burns slow zoom */}
-        <div
-          className="absolute inset-0 hero-zoom"
-          style={{
-            backgroundImage: "url('/images/lifestyle/hero-model.jpg')",
-            backgroundSize: "cover",
-            backgroundPosition: "75% 25%",
-            animation: "slowZoom 20s ease-in-out infinite",
-          }}
-        />
+        {/* Background image with Ken Burns slow zoom — responsive swap */}
+        <picture>
+          <source
+            media="(min-width: 768px)"
+            srcSet="/images/hero/home/desktop.jpg"
+          />
+          <img
+            src="/images/hero/home/mobile.jpg"
+            alt=""
+            fetchPriority="high"
+            loading="eager"
+            decoding="async"
+            className="hero-zoom absolute inset-0 w-full h-full object-cover"
+            style={{
+              animation: "slowZoom 20s ease-in-out infinite",
+            }}
+          />
+        </picture>
 
         {/* Dark gradient overlay — full on mobile, left-side on desktop */}
         <div
@@ -311,7 +427,7 @@ export default function Home() {
 
         {/* HERO CONTENT */}
         <div
-          className="relative z-10 h-full min-h-screen flex flex-col justify-end md:justify-center text-center md:text-left px-6 md:px-0 pb-12 md:pb-0 md:pt-0"
+          className="relative z-10 h-full min-h-[100dvh] md:min-h-screen flex flex-col justify-end md:justify-center text-center md:text-left px-6 md:px-0 pb-10 md:pb-0 md:pt-0"
         >
           <div className="md:pl-[8vw] md:pr-[5vw] md:max-w-[680px]">
             {/* Eyebrow */}
@@ -327,28 +443,43 @@ export default function Home() {
               Just A Father Doing Fatherly Things.
             </p>
 
-            {/* CTA Buttons */}
-            <div className="hero-fade hero-delay-4 flex flex-col md:flex-row gap-4">
+            {/* CTA Buttons — Liquid Glass */}
+            <div className="hero-fade hero-delay-4 flex flex-row gap-3 md:gap-4">
               <a
                 href="/collections/all"
-                className="hero-btn-fill inline-flex items-center justify-center font-mono text-[11px] tracking-[0.15em] uppercase font-bold w-full md:w-auto bg-[#0A0A0A] text-[#F2EDE4] md:bg-[#F2EDE4] md:text-[#0A0A0A]"
-                style={{ minHeight: "48px", textDecoration: "none" }}
+                className="glass-btn glass-btn-primary font-mono text-[11px] font-bold uppercase flex-1 md:flex-none"
+                aria-label="Shop Drop"
               >
-                Shop Drop 001
+                <span>Shop Drop</span>
+                <svg
+                  className="glass-btn-icon"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.75"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg>
               </a>
               <a
                 href="/our-story"
-                className="hero-btn-outline inline-flex items-center justify-center font-mono text-[11px] tracking-[0.15em] uppercase font-bold text-[#F2EDE4] border border-[#F2EDE4]/40 bg-transparent w-full md:w-auto"
-                style={{ minHeight: "48px", textDecoration: "none" }}
+                className="glass-btn glass-btn-secondary font-mono text-[11px] font-bold uppercase flex-1 md:flex-none"
+                aria-label="Read our story"
               >
-                Our Story
+                <span>Our Story</span>
               </a>
             </div>
 
             {/* Stats row */}
             <div
               ref={statsRef}
-              className="hero-fade hero-delay-5 flex justify-center md:justify-start gap-6 md:gap-10 mt-6 md:mt-8 pt-5 md:pt-6"
+              className="hero-fade hero-delay-5 hidden md:flex justify-center md:justify-start gap-6 md:gap-10 mt-6 md:mt-8 pt-5 md:pt-6"
               style={{ borderTop: "1px solid rgba(242,237,228,0.15)" }}
             >
               <div>
@@ -361,7 +492,7 @@ export default function Home() {
               </div>
               <div>
                 <div className="font-mono text-xl md:text-2xl font-bold text-[#F2EDE4] leading-none">
-                  {count6}
+                  {count5}
                 </div>
                 <div className="font-mono text-[10px] md:text-[11px] tracking-[0.15em] uppercase text-[#F2EDE4]/60 mt-1">
                   Colorways
