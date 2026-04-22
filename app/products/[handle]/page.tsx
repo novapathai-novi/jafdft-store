@@ -441,33 +441,35 @@ export default function ProductPage() {
           />
         </div>
 
-        {/* You May Also Like */}
+        {/* You May Also Like — Kith-style edge aligned */}
         <div className="border-t border-[#D9D5CF]">
-          <div className="mx-auto max-w-7xl px-6 py-16 sm:py-20">
-            <h2 className="font-display text-3xl tracking-wide text-foreground mb-10">
+          <div className="px-[18px] lg:px-[24px] py-16 sm:py-20">
+            <h2 className="font-mono text-[11px] uppercase tracking-[0.2em] text-[#0A0A0A] mb-8">
               You May Also Like
             </h2>
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-[18px]">
               {others.map((p) => (
                 <Link key={p.handle} href={`/products/${p.handle}`} className="group block">
                   <div
-                    className="aspect-square mb-3 overflow-hidden flex items-center justify-center"
+                    className="aspect-square overflow-hidden"
                     style={{ backgroundColor: "#ebebeb" }}
                   >
                     <img
                       src={p.images[0].src}
                       alt={p.name}
                       draggable={false}
-                      className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
                     />
                   </div>
-                  <p className="font-mono text-[9px] uppercase tracking-[0.25em] text-[#C8905A] mb-1">
+                  <p className="font-mono text-[10px] uppercase tracking-[0.06em] font-medium text-[#C8905A] mt-3">
                     {p.series}
                   </p>
-                  <h3 className="font-display text-xl tracking-wide text-foreground">
+                  <h3 className="font-display text-[16px] text-[#0A0A0A] mt-0.5">
                     {p.name}
                   </h3>
-                  <p className="font-mono text-sm text-text-muted">${p.price}</p>
+                  <p className="font-mono text-[12px] font-light text-[#0A0A0A] mt-0.5">
+                    ${p.price}.00
+                  </p>
                 </Link>
               ))}
             </div>
