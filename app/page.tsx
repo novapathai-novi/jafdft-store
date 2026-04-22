@@ -380,7 +380,7 @@ export default function Home() {
 
       {/* HERO */}
       <section
-        className="relative w-full min-h-[100dvh] md:min-h-screen overflow-hidden"
+        className="relative w-full min-h-[92dvh] md:min-h-screen overflow-hidden"
         style={{ backgroundColor: "#F2EDE4" }}
       >
         {/* Diagonal shooting meteor lines — 2 on mobile, 4 on desktop */}
@@ -427,7 +427,7 @@ export default function Home() {
 
         {/* HERO CONTENT */}
         <div
-          className="relative z-10 h-full min-h-[100dvh] md:min-h-screen flex flex-col justify-end md:justify-center text-center md:text-left px-6 md:px-0 pb-10 md:pb-0 md:pt-0"
+          className="relative z-10 h-full min-h-[92dvh] md:min-h-screen flex flex-col justify-end md:justify-center text-center md:text-left px-6 md:px-0 pb-6 md:pb-0 md:pt-0"
         >
           <div className="md:pl-[8vw] md:pr-[5vw] md:max-w-[680px]">
             {/* Eyebrow */}
