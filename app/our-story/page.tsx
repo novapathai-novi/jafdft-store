@@ -108,13 +108,11 @@ export default function OurStory() {
         {/* ─── MEET DEMETRIE SECTION ─── */}
         <section style={{ background: '#FAF7F2', paddingBottom: '120px' }}>
           <div className="fade-up" style={{ width: '100%', maxWidth: '1100px', margin: '0 auto', padding: '0 24px 64px' }}>
-            <div style={{ width: '100%', aspectRatio: '4/5', maxHeight: '720px', overflow: 'hidden' }}>
-              <img
-                src="/images/our-story/demetrie-family-portrait.jpg"
-                alt="Demetrie, founder of JAFDFT"
-                style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top' }}
-              />
-            </div>
+            <img
+              src="/images/our-story/demetrie-family-portrait.jpg"
+              alt="Demetrie, founder of JAFDFT"
+              style={{ width: '100%', height: 'auto', display: 'block' }}
+            />
           </div>
           <div style={{ maxWidth: '680px', margin: '0 auto', padding: '0 24px' }}>
             <p className="fade-up" style={{ fontFamily: 'Space Mono, monospace', fontSize: '9px', letterSpacing: '3px', textTransform: 'uppercase', color: '#C8905A', marginBottom: '12px' }}>
@@ -147,13 +145,11 @@ export default function OurStory() {
         {/* ─── DROP 001 CLOSING SECTION ─── */}
         <section style={{ background: '#FAF7F2', paddingBottom: '120px' }}>
           <div className="fade-up" style={{ width: '100%', maxWidth: '1100px', margin: '0 auto', padding: '0 24px 64px' }}>
-            <div style={{ width: '100%', aspectRatio: '4/5', maxHeight: '720px', overflow: 'hidden' }}>
-              <img
-                src="/images/our-story/demetrie-family-tender.jpg"
-                alt="Demetrie with his daughter"
-                style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top' }}
-              />
-            </div>
+            <img
+              src="/images/our-story/demetrie-family-tender.jpg"
+              alt="Demetrie with his daughter"
+              style={{ width: '100%', height: 'auto', display: 'block' }}
+            />
           </div>
           <div style={{ maxWidth: '680px', margin: '0 auto', padding: '0 24px' }}>
             <p className="fade-up" style={{ fontFamily: 'Space Mono, monospace', fontSize: '9px', letterSpacing: '3px', textTransform: 'uppercase', color: '#C8905A', marginBottom: '12px' }}>
