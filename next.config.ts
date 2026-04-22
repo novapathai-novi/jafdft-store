@@ -11,6 +11,11 @@ const nextConfig: NextConfig = {
         destination: "/collections/all",
         permanent: true,
       },
+      {
+        source: "/papa-charlie",
+        destination: "/our-story",
+        permanent: true,
+      },
     ];
   },
   async headers() {

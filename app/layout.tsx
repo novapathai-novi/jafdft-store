@@ -30,7 +30,7 @@ const spaceMono = Space_Mono({
 
 export const metadata: Metadata = {
   title: "JAFDFT — Just A Father Doing Fatherly Things",
-  description: "Drop 001. 125 hats. Each one numbered. Designed by Papa Charli. For the fathers who are locked in and show up.",
+  description: "Drop 001. 125 hats. Each one numbered. For the fathers who are locked in and show up.",
   openGraph: {
     title: "JAFDFT — Just A Father Doing Fatherly Things",
     description: "Drop 001. 125 hats. Each one numbered. For the fathers who are locked in and show up.",

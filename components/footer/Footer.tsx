@@ -2,10 +2,7 @@ import Link from "next/link";
 
 const navLinks = [
   { label: "Shop", href: "/collections/all" },
-  { label: "Flagship Series", href: "/collections/all" },
-  { label: "Legacy Series", href: "/collections/all" },
   { label: "Our Story", href: "/our-story" },
-  { label: "Papa Charli", href: "/papa-charlie" },
   { label: "Shipping", href: "#" },
   { label: "Returns", href: "#" },
   { label: "Contact", href: "#" },
@@ -74,7 +71,7 @@ export default function Footer() {
         {/* Bottom copyright */}
         <div className="border-t border-white/5 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-white/30">
-            &copy; 2026 JAFDFT &middot; Designed by Papa Charli
+            &copy; 2026 JAFDFT &middot; By Fathers, For Fathers
           </p>
           <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-white/30">
             Drop 001 &middot; 125 Hats &middot; Each One Numbered

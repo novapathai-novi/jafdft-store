@@ -19,13 +19,13 @@ function getTimeLeft() {
 // ─── Data ────────────────────────────────────────────────────────────────────
 
 const marqueeText =
-  "SUMMER 2026 \u2014 NEXT DROP \u2014 JAFDFT APPAREL \u2014 DESIGNED BY PAPA CHARLIE \u2014 COMING SOON \u2014 GET ACCESS FIRST \u2014 ";
+  "SUMMER 2026 \u2014 NEXT DROP \u2014 JAFDFT APPAREL \u2014 COMING SOON \u2014 GET ACCESS FIRST \u2014 ";
 
 const stats = [
   { label: "Drop Date", value: "Summer 2026" },
   { label: "Collection", value: "JAFDFT Apparel" },
   { label: "Access", value: "Waitlist Only" },
-  { label: "Designed by", value: "Papa Charli" },
+  { label: "Designed by", value: "JAFDFT" },
 ];
 
 // ─── Component ───────────────────────────────────────────────────────────────
@@ -143,7 +143,7 @@ export default function TshirtDrop() {
                 </button>
               </form>
               <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-white/20 mb-12">
-                Papa Charli approved &middot; No spam &middot; Drop access only
+                Founder approved &middot; No spam &middot; Drop access only
               </p>
 
               {/* Stats row */}
