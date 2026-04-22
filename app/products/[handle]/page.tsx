@@ -163,7 +163,7 @@ export default function ProductPage() {
   const completeTheLookSection = (
     <div className="mt-6 pt-4" style={{ borderTop: "1px solid #D9D5CF" }}>
       <h3 className="font-display text-lg text-[#0A0A0A] mb-4">
-        Complete The Look
+        More From Drop 001
       </h3>
       <div className="space-y-4">
         {ctlProducts.map((p) => (
