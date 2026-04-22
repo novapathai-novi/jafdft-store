@@ -19,12 +19,11 @@ export const dynamic = "force-dynamic";
 // ─── Complete The Look pairings ─────────────────────────────────────────────
 
 const completeTheLook: Record<string, [string, string]> = {
-  "the-standard": ["the-sunday", "the-girl-dad"],
-  "the-sunday": ["the-standard", "the-sideline"],
-  "the-sideline": ["the-provider", "the-builder"],
-  "the-provider": ["the-standard", "the-girl-dad"],
-  "the-builder": ["the-sunday", "the-sideline"],
+  "the-sunday": ["the-standard", "the-girl-dad"],
+  "the-standard": ["the-sunday", "the-provider"],
   "the-girl-dad": ["the-standard", "the-builder"],
+  "the-provider": ["the-builder", "the-standard"],
+  "the-builder": ["the-provider", "the-sunday"],
 };
 
 // ─── Page ────────────────────────────────────────────────────────────────────
