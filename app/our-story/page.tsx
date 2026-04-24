@@ -81,7 +81,7 @@ export default function OurStory() {
               <span className="italic font-light">Collection.</span>
             </h1>
             <Link
-              href="/shop"
+              href="/collections/all"
               className="group inline-flex items-center gap-3 px-8 py-4 mt-2 rounded-full bg-white/20 backdrop-blur-md border border-white/40 text-[#0A0A0A] font-mono text-xs uppercase tracking-widest transition-all duration-300 hover:bg-white/35 hover:border-white/60 hover:scale-[1.02]"
             >
               Shop Drop
@@ -103,9 +103,9 @@ export default function OurStory() {
           </picture>
           <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 78%, #FAF7F2 100%)', opacity: 0.2 }} />
           {/* Mobile overlay — Shop Drop button only */}
-          <div className="md:hidden absolute inset-x-0 bottom-0 pb-10 px-6 flex justify-center z-10">
+          <div className="md:hidden absolute inset-x-0 bottom-0 pb-[10vh] px-6 flex justify-center z-10">
             <Link
-              href="/shop"
+              href="/collections/all"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/30 backdrop-blur-md border border-white/50 text-[#0A0A0A] font-mono text-[10px] uppercase tracking-widest transition-all duration-300 hover:bg-white/50"
             >
               Shop Drop
