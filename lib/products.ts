@@ -8,6 +8,7 @@ export type Product = {
   swatches: string[];
   variantId: string;
   sortOrder: number;
+  numberRange: string;
   images: { angle: string; src: string }[];
   lifestyle: string;
   description: string;
@@ -20,11 +21,12 @@ const products: Product[] = [
     handle: "the-sunday",
     series: "Flagship Series",
     colorway: "White / Black",
-    price: 45,
+    price: 40,
     units: 21,
     swatches: ["#F2EDE4", "#0A0A0A"],
     variantId: "gid://shopify/ProductVariant/the-sunday",
-    sortOrder: 1,
+    sortOrder: 5,
+    numberRange: "101–125",
     images: [
       { angle: "Front", src: "/images/products-v2/the-sunday/1-the-sunday-front.jpg" },
       { angle: "Left", src: "/images/products-v2/the-sunday/2-the-sunday-left.jpg" },
@@ -42,11 +44,12 @@ const products: Product[] = [
     handle: "the-standard",
     series: "Flagship Series",
     colorway: "All Black",
-    price: 45,
+    price: 40,
     units: 21,
     swatches: ["#0A0A0A"],
-    variantId: "gid://shopify/ProductVariant/the-standard",
-    sortOrder: 2,
+    variantId: "gid://shopify/ProductVariant/48045237240052",
+    sortOrder: 1,
+    numberRange: "001–025",
     images: [
       { angle: "Front", src: "/images/products-v2/the-standard/1-the-standard-front.jpg" },
       { angle: "Left", src: "/images/products-v2/the-standard/2-the-standard-left.jpg" },
@@ -64,11 +67,12 @@ const products: Product[] = [
     handle: "the-girl-dad",
     series: "Legacy Series",
     colorway: "Camo / Pink",
-    price: 45,
+    price: 40,
     units: 20,
     swatches: ["#4A5D3A", "#D4899B"],
     variantId: "gid://shopify/ProductVariant/the-girl-dad",
     sortOrder: 3,
+    numberRange: "051–075",
     images: [
       { angle: "Front", src: "/images/products-v2/the-girl-dad/1-the-girl-dad-front.jpg" },
       { angle: "Left", src: "/images/products-v2/the-girl-dad/2-the-girl-dad-left.jpg" },
@@ -86,11 +90,12 @@ const products: Product[] = [
     handle: "the-provider",
     series: "Legacy Series",
     colorway: "Camo / Blue",
-    price: 45,
+    price: 40,
     units: 21,
     swatches: ["#4A5D3A", "#2A4A6B"],
     variantId: "gid://shopify/ProductVariant/the-provider",
     sortOrder: 4,
+    numberRange: "076–100",
     images: [
       { angle: "Front", src: "/images/products-v2/the-provider/1-the-provider-front.jpg" },
       { angle: "Left", src: "/images/products-v2/the-provider/2-the-provider-left.jpg" },
@@ -108,11 +113,12 @@ const products: Product[] = [
     handle: "the-builder",
     series: "Legacy Series",
     colorway: "Tan / Camo",
-    price: 45,
+    price: 40,
     units: 21,
     swatches: ["#C4A97D", "#4A5D3A"],
     variantId: "gid://shopify/ProductVariant/the-builder",
-    sortOrder: 5,
+    sortOrder: 2,
+    numberRange: "026–050",
     images: [
       { angle: "Front", src: "/images/products-v2/the-builder/1-the-builder-front.jpg" },
       { angle: "Left", src: "/images/products-v2/the-builder/2-the-builder-left.jpg" },
