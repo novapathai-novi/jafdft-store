@@ -380,8 +380,7 @@ export default function Home() {
 
       {/* HERO */}
       <section
-        className="relative w-full min-h-[92dvh] md:min-h-screen overflow-hidden"
-        style={{ backgroundColor: "#F2EDE4" }}
+        className="relative w-full min-h-[100dvh] md:min-h-0 md:aspect-[16/9] md:max-h-[100dvh] overflow-hidden"
       >
         {/* Diagonal shooting meteor lines — 2 on mobile, 4 on desktop */}
         <div className="pointer-events-none absolute inset-0 z-[3] overflow-hidden">
@@ -395,11 +394,11 @@ export default function Home() {
         <picture>
           <source
             media="(min-width: 768px)"
-            srcSet="/images/hero/home/desktop.jpg"
+            srcSet="/images/hero/home/desktop-1.jpg"
           />
           <img
-            src="/images/hero/home/mobile.jpg"
-            alt=""
+            src="/images/hero/home/mobile-1.jpg"
+            alt="JAFDFT Drop 001 — Just A Father Doing Fatherly Things"
             fetchPriority="high"
             loading="eager"
             decoding="async"
@@ -427,7 +426,7 @@ export default function Home() {
 
         {/* HERO CONTENT */}
         <div
-          className="relative z-10 h-full min-h-[92dvh] md:min-h-screen flex flex-col justify-end md:justify-center text-center md:text-left px-6 md:px-0 pb-6 md:pb-0 md:pt-0"
+          className="relative z-10 h-full min-h-[100dvh] md:min-h-0 md:h-full flex flex-col justify-end md:justify-center text-center md:text-left px-6 md:px-0 pb-[10vh] md:pb-0 md:pt-0"
         >
           <div className="md:pl-[8vw] md:pr-[5vw] md:max-w-[680px]">
             {/* Eyebrow */}

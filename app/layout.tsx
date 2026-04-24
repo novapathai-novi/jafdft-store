@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Bebas_Neue, Playfair_Display, DM_Sans, Space_Mono } from "next/font/google";
 import { CartProvider } from "@/components/cart/CartContext";
 import "./globals.css";
@@ -27,6 +27,12 @@ const spaceMono = Space_Mono({
   variable: "--font-space-mono",
   subsets: ["latin"],
 });
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
+};
 
 export const metadata: Metadata = {
   title: "JAFDFT — Just A Father Doing Fatherly Things",
@@ -68,14 +74,14 @@ export default function RootLayout({
         <link
           rel="preload"
           as="image"
-          href="/images/hero/home/desktop.jpg"
+          href="/images/hero/home/desktop-1.jpg"
           media="(min-width: 768px)"
           fetchPriority="high"
         />
         <link
           rel="preload"
           as="image"
-          href="/images/hero/home/mobile.jpg"
+          href="/images/hero/home/mobile-1.jpg"
           media="(max-width: 767px)"
           fetchPriority="high"
         />

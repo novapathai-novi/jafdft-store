@@ -1,5 +1,6 @@
 'use client'
 import { useEffect, useRef } from 'react'
+import Link from 'next/link'
 import Nav from '@/components/nav/Nav'
 import Footer from '@/components/footer/Footer'
 
@@ -69,14 +70,50 @@ export default function OurStory() {
 
       <div ref={pageRef}>
         {/* ─── HERO SECTION ─── */}
-        <div style={{ position: 'relative', width: '100%', height: '100vh', overflow: 'hidden' }}>
-          <img
-            src="/images/our-story/demetrie-family-hero.jpg"
-            alt="Demetrie with his family"
-            className="hero-img"
-            style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 30%' }}
-          />
-          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 78%, #FAF7F2 100%)' }} />
+        <div className="relative w-full min-h-[100dvh] md:min-h-0 md:aspect-[16/9] md:max-h-[100dvh] overflow-hidden">
+          {/* Desktop overlay text */}
+          <div className="hidden md:flex absolute inset-y-0 left-0 w-2/5 flex-col justify-center items-start pl-12 lg:pl-20 xl:pl-28 z-10 gap-6">
+            <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#C8905A]">
+              Drop 001
+            </span>
+            <h1 className="font-display text-5xl lg:text-6xl xl:text-7xl leading-[1.05] text-[#0A0A0A] tracking-tight">
+              The Fatherly<br />Things<br />
+              <span className="italic font-light">Collection.</span>
+            </h1>
+            <Link
+              href="/shop"
+              className="group inline-flex items-center gap-3 px-8 py-4 mt-2 rounded-full bg-white/20 backdrop-blur-md border border-white/40 text-[#0A0A0A] font-mono text-xs uppercase tracking-widest transition-all duration-300 hover:bg-white/35 hover:border-white/60 hover:scale-[1.02]"
+            >
+              Shop Drop
+              <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <path d="M5 12h14M13 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </Link>
+          </div>
+          <picture>
+            <source
+              media="(min-width: 768px)"
+              srcSet="/images/our-story/our-story-hero-desktop.jpg"
+            />
+            <img
+              src="/images/our-story/our-story-hero-mobile.jpg"
+              alt="JAFDFT Drop 001 — all five colorways on natural stone"
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+          </picture>
+          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 78%, #FAF7F2 100%)', opacity: 0.2 }} />
+          {/* Mobile overlay — Shop Drop button only */}
+          <div className="md:hidden absolute inset-x-0 bottom-0 pb-10 px-6 flex justify-center z-10">
+            <Link
+              href="/shop"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/30 backdrop-blur-md border border-white/50 text-[#0A0A0A] font-mono text-[10px] uppercase tracking-widest transition-all duration-300 hover:bg-white/50"
+            >
+              Shop Drop
+              <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <path d="M5 12h14M13 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </Link>
+          </div>
         </div>
 
         {/* Hero text */}
@@ -93,13 +130,10 @@ export default function OurStory() {
             </div>
             <div className="fade-up" style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '16px', fontWeight: 300, color: '#7a7570', lineHeight: 1.8 }}>
               <p style={{ marginBottom: '20px' }}>
-                JAFDFT was born from a truth most people miss: the strongest parts of fatherhood happen in the quiet.
-              </p>
-              <p style={{ marginBottom: '20px' }}>
-                Not the posts. Not the slogans. The small moments. Early mornings before the house wakes up. Bedtime routines repeated without applause. Showing up the next day. And the day after that.
+                JAFDFT was built from real life, real moments, and the pride of showing up every day. This brand is more than apparel&nbsp;&mdash; it&rsquo;s a statement for fathers who lead, love, and live it out loud.
               </p>
               <p>
-                That kind of fatherhood deserves a uniform.
+                &ldquo;Just A Father Doing Fatherly Things.&rdquo; The kind of fatherhood that deserves a uniform.
               </p>
             </div>
           </div>
@@ -126,13 +160,13 @@ export default function OurStory() {
             </div>
             <div className="fade-up" style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '16px', fontWeight: 300, color: '#7a7570', lineHeight: 1.8 }}>
               <p style={{ marginBottom: '20px' }}>
-                Demetrie is a father first, a designer second, and a Chicagoan through and through.
+                Demetrie is a father first, always. And proud to wear it out loud.
               </p>
               <p style={{ marginBottom: '20px' }}>
                 He founded JAFDFT with one standard: make something real enough to wear every day, designed well enough to mean something.
               </p>
               <p style={{ marginBottom: '20px' }}>
-                Every piece in Drop 001 came through that filter &mdash; school runs, weekend outings, the long days and the moments in between.
+                Every piece in Drop 001 came through that filter&nbsp;&mdash; school runs, weekend outings, the long days and the moments in between.
               </p>
               <p style={{ marginBottom: '32px' }}>
                 Nothing loud. Nothing overdone.
