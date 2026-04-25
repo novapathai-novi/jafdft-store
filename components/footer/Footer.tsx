@@ -28,7 +28,7 @@ export default function Footer() {
             </p>
             <div className="flex items-center gap-5">
               {/* Instagram */}
-              <a href="#" aria-label="Instagram" className="text-white/50 hover:text-[#C8905A] transition-colors">
+              <a href="https://www.instagram.com/jafdft/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-white/50 hover:text-[#C8905A] transition-colors">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                   <rect x="2" y="2" width="20" height="20" rx="5" />
                   <circle cx="12" cy="12" r="5" />
@@ -36,7 +36,7 @@ export default function Footer() {
                 </svg>
               </a>
               {/* TikTok */}
-              <a href="#" aria-label="TikTok" className="text-white/50 hover:text-[#C8905A] transition-colors">
+              <a href="https://www.tiktok.com/@jafdft" target="_blank" rel="noopener noreferrer" aria-label="TikTok" className="text-white/50 hover:text-[#C8905A] transition-colors">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
                 </svg>
