@@ -24,7 +24,7 @@ const products: Product[] = [
     price: 40,
     units: 21,
     swatches: ["#F2EDE4", "#0A0A0A"],
-    variantId: "gid://shopify/ProductVariant/the-sunday",
+    variantId: "gid://shopify/ProductVariant/48045716635892",
     sortOrder: 5,
     numberRange: "101–125",
     images: [
@@ -70,7 +70,7 @@ const products: Product[] = [
     price: 40,
     units: 20,
     swatches: ["#4A5D3A", "#D4899B"],
-    variantId: "gid://shopify/ProductVariant/the-girl-dad",
+    variantId: "gid://shopify/ProductVariant/48045706019060",
     sortOrder: 3,
     numberRange: "051–075",
     images: [
@@ -93,7 +93,7 @@ const products: Product[] = [
     price: 40,
     units: 21,
     swatches: ["#4A5D3A", "#2A4A6B"],
-    variantId: "gid://shopify/ProductVariant/the-provider",
+    variantId: "gid://shopify/ProductVariant/48045715161332",
     sortOrder: 4,
     numberRange: "076–100",
     images: [
@@ -116,7 +116,7 @@ const products: Product[] = [
     price: 40,
     units: 21,
     swatches: ["#C4A97D", "#4A5D3A"],
-    variantId: "gid://shopify/ProductVariant/the-builder",
+    variantId: "gid://shopify/ProductVariant/48045713522932",
     sortOrder: 2,
     numberRange: "026–050",
     images: [
