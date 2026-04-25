@@ -16,6 +16,7 @@ export default function ProductShowcase() {
       name: hat.name,
       price: hat.price,
       image: hat.images[0].src,
+      variantId: hat.variantId,
     });
     setAddedHandle(hat.handle);
     setTimeout(() => setAddedHandle(null), 1500);

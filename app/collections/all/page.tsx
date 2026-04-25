@@ -18,6 +18,7 @@ export default function CollectionPage() {
       name: p.name,
       price: p.price,
       image: p.images[0].src,
+      variantId: p.variantId,
     });
     setAddedHandle(p.handle);
     setTimeout(() => setAddedHandle(null), 1500);
