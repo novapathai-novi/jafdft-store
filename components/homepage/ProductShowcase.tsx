@@ -106,7 +106,7 @@ export default function ProductShowcase() {
               {hat.name}
             </h3>
             <p className="font-mono text-[12px] font-light text-[#0A0A0A] mt-0.5">
-              $45.00
+              ${hat.price}.00
             </p>
 
             {/* Add to Cart — mobile only, below card */}
