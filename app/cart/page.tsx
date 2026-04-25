@@ -1,12 +1,45 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import Nav from "@/components/nav/Nav";
 import Footer from "@/components/footer/Footer";
 import { useCart } from "@/components/cart/CartContext";
+import { createCart, addToCart as shopifyAddToCart } from "@/lib/shopify";
 
 export default function CartPage() {
   const { cartItems, cartCount, removeFromCart, updateQuantity } = useCart();
+  const [isCheckingOut, setIsCheckingOut] = useState(false);
+  const [checkoutError, setCheckoutError] = useState<string | null>(null);
+
+  const handleCheckout = async () => {
+    setIsCheckingOut(true);
+    setCheckoutError(null);
+
+    try {
+      const cart = await createCart();
+
+      let updatedCart = cart;
+      for (const item of cartItems) {
+        updatedCart = await shopifyAddToCart(
+          updatedCart.id,
+          item.variantId,
+          item.quantity
+        );
+      }
+
+      if (updatedCart?.checkoutUrl) {
+        window.location.href = updatedCart.checkoutUrl;
+      } else {
+        throw new Error("No checkout URL returned");
+      }
+    } catch (error) {
+      console.error("Checkout error:", error);
+      setCheckoutError("Something went wrong. Please try again.");
+    } finally {
+      setIsCheckingOut(false);
+    }
+  };
 
   const total = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
@@ -107,15 +140,20 @@ export default function CartPage() {
                   <p className="font-display text-3xl text-foreground">${total}</p>
                 </div>
 
-                <a
-                  href="https://jafdft.myshopify.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-10 py-4 bg-foreground text-background font-mono text-[11px] uppercase tracking-widest hover:bg-foreground/85 transition-colors"
+                <button
+                  onClick={handleCheckout}
+                  disabled={isCheckingOut}
+                  className="px-10 py-4 bg-foreground text-background font-mono text-[11px] uppercase tracking-widest hover:bg-foreground/85 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Proceed to Checkout
-                </a>
+                  {isCheckingOut ? "Redirecting\u2026" : "Proceed to Checkout"}
+                </button>
               </div>
+
+              {checkoutError && (
+                <p className="font-mono text-[11px] text-red-600 mt-4 text-right">
+                  {checkoutError}
+                </p>
+              )}
             </>
           )}
         </div>

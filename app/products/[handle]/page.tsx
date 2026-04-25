@@ -95,7 +95,7 @@ export default function ProductPage() {
     .filter(Boolean) as typeof allProducts;
 
   const handleCtlAdd = (p: (typeof allProducts)[number]) => {
-    addToCart({ handle: p.handle, name: p.name, price: p.price, image: p.images[0].src });
+    addToCart({ handle: p.handle, name: p.name, price: p.price, image: p.images[0].src, variantId: p.variantId });
     setCtlAdded(p.handle);
     setTimeout(() => setCtlAdded(null), 1500);
   };
@@ -311,6 +311,7 @@ export default function ProductPage() {
               name={product.name}
               price={product.price}
               image={product.images[0].src}
+              variantId={product.variantId}
               className="h-[48px] min-h-0 text-[12px] tracking-[0.1em] mt-4"
             />
 
@@ -437,6 +438,7 @@ export default function ProductPage() {
             name={product.name}
             price={product.price}
             image={product.images[0].src}
+            variantId={product.variantId}
             className="h-[48px] min-h-0 text-[11px] tracking-[0.1em] flex-1"
           />
         </div>

@@ -8,6 +8,7 @@ type Props = {
   name: string;
   price: number;
   image: string;
+  variantId: string;
   label?: string;
   className?: string;
 };
@@ -17,6 +18,7 @@ export default function AddToCartButton({
   name,
   price,
   image,
+  variantId,
   label = "Add to Cart",
   className = "",
 }: Props) {
@@ -24,7 +26,7 @@ export default function AddToCartButton({
   const [added, setAdded] = useState(false);
 
   const handleClick = () => {
-    addToCart({ handle, name, price, image });
+    addToCart({ handle, name, price, image, variantId });
     setAdded(true);
     setTimeout(() => setAdded(false), 1500);
   };
